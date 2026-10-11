@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}探索民宿 · 栖居{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">SLOW TRAVEL · SINCERE STAY</p><h1>住进风景，也住进生活。</h1><p>发现有温度的房子，开启属于你的自在旅程。</p></div>
+</section>
+<section class="container">
+  <form class="search" method="get">
+    <input name="city" value="{{ city }}" list="cities" placeholder="想去的城市，例如：大理">
+    <datalist id="cities">{% for item in cities %}<option value="{{ item }}">{% endfor %}</datalist>
+    <input name="q" value="{{ keyword }}" placeholder="按房源名称或关键词搜索">
+    <button type="submit">搜索房源</button>
+  </form>
+  <div class="section-heading"><div><p class="eyebrow">HANDPICKED HOMES</p><h2>精选房源</h2></div><span>{{ available_count }} 套可预订</span></div>
+  <div class="cards">
+    {% for property in properties %}
+    <article class="card">
+      {% if property.image %}<img src="{{ property.image.url }}" alt="{{ property.name }}">{% elif property.image_url %}<img src="{{ property.image_url }}" alt="{{ property.name }}">{% else %}<div class="placeholder">HOME</div>{% endif %}
+      <div class="card-body"><p class="muted">{{ property.city }} · {{ property.address }}</p><h3>{{ property.name }} {% if property.status == 'sold_out' %}<span class="status-badge sold-out">已售罄</span>{% endif %}</h3><p class="desc">{{ property.description|truncatechars:65 }}</p><div class="card-bottom"><strong>¥{{ property.price_per_night|floatformat:0 }} <small>/ 晚</small></strong><a href="{% url 'listings:property_detail' property.pk %}">{% if property.status == 'sold_out' %}查看房源{% else %}查看详情 →{% endif %}</a></div></div>
+    </article>
+    {% empty %}<div class="empty"><h3>暂时没有匹配的房源</h3><p>试试调整城市或搜索关键词。</p></div>{% endfor %}
+  </div>
+</section>
+{% endblock %}

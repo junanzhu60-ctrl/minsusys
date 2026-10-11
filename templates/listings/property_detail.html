@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ property.name }} · 栖居{% endblock %}
+{% block content %}
+<section class="detail-hero">{% if property.image %}<img src="{{ property.image.url }}" alt="{{ property.name }}">{% elif property.image_url %}<img src="{{ property.image_url }}" alt="{{ property.name }}">{% else %}<div class="placeholder">{{ property.name }}</div>{% endif %}</section>
+<section class="container detail-grid">
+  <div><a class="back" href="{% url 'listings:home' %}">← 返回房源列表</a><p class="eyebrow">{{ property.city }} · {{ property.address }}</p><h1>{{ property.name }} {% if property.status == 'sold_out' %}<span class="status-badge sold-out">已售罄</span>{% endif %}</h1><p class="lead">{{ property.description }}</p><div class="facts"><div><b>{{ property.bedrooms }}</b><span>卧室</span></div><div><b>{{ property.max_guests }}</b><span>可住人数</span></div><div><b>{{ property.get_status_display }}</b><span>房态</span></div></div><h2>房屋设施</h2><p class="amenities">{{ property.amenities|default:'请在后台添加房源设施信息。' }}</p></div>
+  <aside class="booking-card"><p>每晚价格</p><strong>¥{{ property.price_per_night|floatformat:0 }} <small>/ 晚</small></strong><hr><p>最多可住 {{ property.max_guests }} 人</p>{% if property.status == 'available' %}<a class="button" href="{% url 'listings:book_property' property.pk %}">选择日期并预订</a>{% else %}<p class="sold-out-note">该房源已售罄，暂不接受预订。</p>{% endif %}</aside>
+</section>
+{% endblock %}

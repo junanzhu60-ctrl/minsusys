@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}扫码支付 · 栖居{% endblock %}
+{% block content %}
+<section class="payment-page container">
+  <div class="payment-modal" role="dialog" aria-labelledby="payment-title" aria-modal="true">
+    <div class="payment-modal__header"><span class="payment-mark">✓</span><div><p class="eyebrow">WECHAT PAY</p><h1 id="payment-title">请扫码支付</h1></div></div>
+    <p class="payment-intro">请使用微信扫描二维码，完成本次民宿预订付款。</p>
+    <div class="payment-amount"><span>应付金额</span><strong>¥{{ booking.total_price|floatformat:0 }}</strong></div>
+    <img class="payment-qr" src="{% static 'images/wechat-payment.jpg' %}" alt="微信收款二维码">
+    <p class="payment-hint">支付完成后，请点击下方按钮确认。点击即表示您已完成支付。</p>
+    <form method="post" action="{% url 'listings:confirm_payment' booking.pk booking.payment_token %}">{% csrf_token %}<button class="payment-confirm" type="submit">我已支付，确认订单</button></form>
+    <p class="payment-order">订单 #{{ booking.pk }} · {{ booking.property.name }}</p>
+  </div>
+</section>
+{% endblock %}

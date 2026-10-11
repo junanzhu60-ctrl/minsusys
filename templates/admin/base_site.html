@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} · {% endif %}栖居管理后台{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/admin-apple.css' %}?v=20261012-2">
+  <link rel="stylesheet" href="{% static 'css/admin-luxury.css' %}?v=20261012-1">
+  <link rel="stylesheet" href="{% static 'css/admin-finance.css' %}?v=20261012-1">
+{% endblock %}
+
+{% block branding %}
+  <div id="site-name"><a href="{% url 'admin:index' %}"><span class="admin-brand-eyebrow">MIN SU · PRIVATE STAYS</span>栖居 <em>管家中心</em></a></div>
+{% endblock %}
+
+{% block nav-global %}
+  <span class="admin-tagline">民宿运营，一目了然</span>
+  <a class="finance-hub" href="{% url 'finance_report' %}">财务报表</a>
+  {% if pending_booking_count %}
+    <a class="admin-order-alert" href="{% url 'admin:listings_booking_changelist' %}?status__exact=pending">
+      <span class="admin-order-alert__dot"></span>
+      有 {{ pending_booking_count }} 笔待确认新订单
+      <strong>立即处理 →</strong>
+    </a>
+  {% else %}
+    <span class="admin-order-clear">订单状态正常</span>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}支付完成 · 栖居{% endblock %}
+{% block content %}
+<section class="success container"><div class="success-icon">✓</div><p class="eyebrow">PAYMENT RECORDED</p><h1>支付完成，订单已确认</h1><p class="lead">谢谢您，{{ booking.guest_name }}。我们已登记您的支付，并会通过 {{ booking.phone }} 与您联系。</p><div class="confirmation"><div><span>房源</span><b>{{ booking.property.name }}</b></div><div><span>入住 / 退房</span><b>{{ booking.check_in|date:'Y年m月d日' }} — {{ booking.check_out|date:'Y年m月d日' }}</b></div><div><span>支付金额</span><b>¥{{ booking.total_price|floatformat:0 }}（已支付）</b></div></div><a class="button" href="{% url 'listings:home' %}">返回首页</a></section>
+{% endblock %}

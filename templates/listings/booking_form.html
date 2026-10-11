@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}预订 {{ property.name }} · 栖居{% endblock %}
+{% block content %}
+<section class="container form-layout"><div><a class="back" href="{% url 'listings:property_detail' property.pk %}">← 返回房源详情</a><p class="eyebrow">BOOKING REQUEST</p><h1>提交预订申请</h1><p class="lead">请留下您的入住信息，我们将在确认房态后与您联系。</p></div>
+  <form class="booking-form" method="post">{% csrf_token %}
+    {% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>{% endfor %}
+    <button type="submit">提交申请</button>
+  </form>
+  <aside class="summary"><p class="muted">预订房源</p><h3>{{ property.name }}</h3><p>{{ property.city }} · {{ property.address }}</p><strong>¥{{ property.price_per_night|floatformat:0 }} <small>/ 晚</small></strong></aside>
+</section>
+{% endblock %}

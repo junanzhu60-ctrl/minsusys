@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% block title %}财务报表 · 栖居管理后台{% endblock %}
+{% block content %}
+<section class="finance-report">
+  <div class="finance-heading">
+    <div><p class="finance-kicker">FINANCE OVERVIEW</p><h1>财务报表</h1><p>仅统计已支付订单；支付后自动确认并计入营收。</p></div>
+    <a class="finance-export" href="{% url 'finance_export' %}?start={{ start_date }}&end={{ end_date }}">导出 CSV</a>
+  </div>
+
+  <form class="finance-filter" method="get">
+    <label>开始日期<input type="date" name="start" value="{{ start_date }}"></label>
+    <label>结束日期<input type="date" name="end" value="{{ end_date }}"></label>
+    <button type="submit">更新报表</button>
+    {% if start_date or end_date %}<a href="{% url 'finance_report' %}">清除筛选</a>{% endif %}
+  </form>
+
+  <div class="finance-metrics">
+    <article><span>已收款营收</span><strong>¥{{ total_revenue|floatformat:2 }}</strong><small>已支付订单合计</small></article>
+    <article><span>已支付订单</span><strong>{{ paid_count }}</strong><small>笔已完成收款</small></article>
+    <article><span>待支付金额</span><strong>¥{{ pending_amount|floatformat:2 }}</strong><small>{{ pending_count }} 笔待支付订单</small></article>
+    <article><span>支付完成率</span><strong>{{ payment_rate }}%</strong><small>已支付 / 待支付订单</small></article>
+  </div>
+
+  <div class="finance-grid">
+    <article class="finance-panel finance-trend"><div class="finance-panel__title"><h2>近六个月收款趋势</h2><span>实时更新</span></div><div class="trend-bars">{% for row in monthly_rows %}<div class="trend-item"><div class="trend-value">¥{{ row.amount|floatformat:0 }}</div><div class="trend-bar-wrap"><i style="height: {% if row.percent %}{{ row.percent }}{% else %}3{% endif %}%"></i></div><b>{{ row.label }}</b></div>{% endfor %}</div></article>
+    <article class="finance-panel"><div class="finance-panel__title"><h2>房源收入排行</h2><span>已支付订单</span></div><div class="finance-table-wrap"><table class="finance-table"><thead><tr><th>房源</th><th>城市</th><th>订单</th><th>营收</th></tr></thead><tbody>{% for row in property_rows %}<tr><td>{{ row.property__name }}</td><td>{{ row.property__city }}</td><td>{{ row.orders }}</td><td>¥{{ row.revenue|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="4" class="finance-empty">暂时没有已支付订单</td></tr>{% endfor %}</tbody></table></div></article>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}栖居 · 民宿预订{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+<link rel="stylesheet" href="{% static 'css/apple.css' %}?v=20261012-7">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{% url 'listings:home' %}">栖居 <span>STAY</span></a>
+    <nav><a href="{% url 'listings:home' %}">探索房源</a><form class="admin-entry" action="{% url 'listings:management_entry' %}" method="post">{% csrf_token %}<button type="submit">管理后台</button></form></nav>
+  </header>
+  <main>
+    {% if messages %}{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>栖居民宿 · 让每一段旅程，都像回家一样自在</p>
+    <div class="host-contact"><span>主理人</span><strong>罗美馨女士</strong><a href="tel:13796649309">137 9664 9309</a></div>
+  </footer>
+</body>
+</html>

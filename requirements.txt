@@ -1,0 +1,8 @@
+Django>=5.0,<6.0
+PyMySQL>=1.1,<2.0
+python-dotenv>=1.0,<2.0
+Pillow>=12.3,<13.0
+dj-database-url>=2.3,<3.0
+gunicorn>=23.0,<24.0
+psycopg[binary]>=3.2,<4.0
+whitenoise[brotli]>=6.8,<7.0
