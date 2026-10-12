@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+  <defs>
+    <style>
+      .title{font:700 31px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342}
+      .label{font:23px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342;text-anchor:middle;dominant-baseline:middle}
+      .sub{font:19px 'Microsoft YaHei','SimSun',sans-serif;fill:#435364;text-anchor:middle;dominant-baseline:middle}
+      .actor{font:23px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342;text-anchor:middle}
+      .line{stroke:#4d5d6c;stroke-width:2.2;fill:none}
+      .ellipse{fill:#fbfdff;stroke:#4d5d6c;stroke-width:2.2}
+    </style>
+  </defs>
+  <rect width="1600" height="920" fill="#fff"/>
+  <text x="800" y="58" class="title" text-anchor="middle">栖居民宿预订与管理系统——普通用户用例图</text>
+  <rect x="300" y="95" width="1200" height="745" fill="none" stroke="#4d5d6c" stroke-width="2.2"/>
+  <text x="330" y="130" class="sub" text-anchor="start">栖居民宿预订与管理系统</text>
+
+  <!-- actor -->
+  <circle cx="135" cy="400" r="27" fill="white" stroke="#4d5d6c" stroke-width="2.5"/>
+  <line x1="135" y1="427" x2="135" y2="533" class="line"/><line x1="77" y1="467" x2="193" y2="467" class="line"/>
+  <line x1="135" y1="533" x2="83" y2="605" class="line"/><line x1="135" y1="533" x2="187" y2="605" class="line"/>
+  <text x="135" y="647" class="actor">普通用户（顾客）</text>
+
+  <!-- associations -->
+  <path d="M193 467 L470 218" class="line"/><path d="M193 467 L800 218" class="line"/>
+  <path d="M193 467 L1200 218" class="line"/><path d="M193 467 L505 453" class="line"/>
+  <path d="M193 467 L910 453" class="line"/><path d="M193 467 L1270 470" class="line"/>
+  <path d="M193 467 L720 690" class="line"/>
+
+  <ellipse cx="515" cy="205" rx="160" ry="58" class="ellipse"/>
+  <text x="515" y="195" class="label">浏览与搜索房源</text><text x="515" y="228" class="sub">（查看房源列表与关键词查询）</text>
+
+  <ellipse cx="850" cy="205" rx="160" ry="58" class="ellipse"/>
+  <text x="850" y="195" class="label">查看房源详情</text><text x="850" y="228" class="sub">（图片、价格、设施与入住人数）</text>
+
+  <ellipse cx="1240" cy="205" rx="190" ry="58" class="ellipse"/>
+  <text x="1240" y="195" class="label">选择入住与离店日期</text><text x="1240" y="228" class="sub">（填写人数并查看可订状态）</text>
+
+  <ellipse cx="555" cy="455" rx="180" ry="58" class="ellipse"/>
+  <text x="555" y="445" class="label">提交在线预订</text><text x="555" y="478" class="sub">（填写姓名、电话与入住信息）</text>
+
+  <ellipse cx="955" cy="455" rx="175" ry="58" class="ellipse"/>
+  <text x="955" y="445" class="label">查看支付二维码</text><text x="955" y="478" class="sub">（核对订单金额与支付信息）</text>
+
+  <ellipse cx="1285" cy="475" rx="145" ry="55" class="ellipse"/>
+  <text x="1285" y="468" class="label">确认已支付</text><text x="1285" y="498" class="sub">（提交支付确认）</text>
+
+  <ellipse cx="760" cy="700" rx="180" ry="58" class="ellipse"/>
+  <text x="760" y="690" class="label">查看订单结果</text><text x="760" y="723" class="sub">（订单确认与入住提示）</text>
+
+  <!-- internal business relationships -->
+  <path d="M735 205 L688 205" class="line"/><path d="M1010 205 L1050 205" class="line"/>
+  <path d="M1240 263 C1190 320, 1000 370, 735 430" class="line"/>
+  <path d="M735 455 L778 455" class="line"/><path d="M1130 455 L1140 470" class="line"/>
+  <path d="M1285 530 C1210 630, 1060 690, 943 700" class="line"/>
+  <text x="800" y="885" class="sub">说明：普通用户通过前台完成浏览、预订与支付确认；系统自动校验日期和人数，并在支付确认后完成订单确认及房态同步。</text>
+</svg>

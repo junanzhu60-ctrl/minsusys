@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#687484"/></marker>
+    <marker id="triangle" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#fff" stroke="#687484" stroke-width="1.4"/></marker>
+    <style>
+      .title{font:700 31px 'Microsoft YaHei','SimSun',sans-serif;fill:#273444}
+      .head{font:700 23px 'Microsoft YaHei','SimSun',sans-serif;fill:#273444;text-anchor:middle}
+      .body{font:19px 'Microsoft YaHei','SimSun',sans-serif;fill:#34495e}
+      .method{font:18px 'Microsoft YaHei','SimSun',sans-serif;fill:#34495e}
+      .note{font:17px 'Microsoft YaHei','SimSun',sans-serif;fill:#526170}
+      .line{stroke:#687484;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+      .rel{font:18px 'Microsoft YaHei','SimSun',sans-serif;fill:#526170;text-anchor:middle}
+    </style>
+  </defs>
+  <rect width="1800" height="1050" fill="white"/>
+  <text x="900" y="52" class="title" text-anchor="middle">栖居民宿预订与管理系统核心类图</text>
+
+  <!-- Administrator -->
+  <g transform="translate(95 115)">
+    <rect width="365" height="268" rx="5" fill="#eef4ff" stroke="#5f7190" stroke-width="2.4"/>
+    <line x1="0" y1="68" x2="365" y2="68" stroke="#5f7190" stroke-width="2"/><line x1="0" y1="174" x2="365" y2="174" stroke="#5f7190" stroke-width="2"/>
+    <text x="182" y="29" class="head">&lt;&lt;管理员&gt;&gt;</text><text x="182" y="57" class="head">管理员</text>
+    <text x="16" y="100" class="body">+ Integer id</text><text x="16" y="129" class="body">+ String username</text><text x="16" y="158" class="body">+ String role</text>
+    <text x="16" y="207" class="method">+ login()</text><text x="16" y="235" class="method">+ manageProperty()</text><text x="16" y="263" class="method">+ manageBooking()</text>
+  </g>
+
+  <!-- Property -->
+  <g transform="translate(700 100)">
+    <rect width="405" height="340" rx="5" fill="#fff8ed" stroke="#d58a3a" stroke-width="2.5"/>
+    <line x1="0" y1="68" x2="405" y2="68" stroke="#d58a3a" stroke-width="2"/><line x1="0" y1="226" x2="405" y2="226" stroke="#d58a3a" stroke-width="2"/>
+    <text x="202" y="29" class="head">&lt;&lt;实体类&gt;&gt;</text><text x="202" y="57" class="head">房源（Property）</text>
+    <text x="16" y="99" class="body">+ Integer id</text><text x="16" y="128" class="body">+ String name</text><text x="16" y="157" class="body">+ Decimal price</text><text x="16" y="186" class="body">+ Integer maxGuests</text><text x="16" y="215" class="body">+ String status</text>
+    <text x="16" y="258" class="method">+ updateStatus()</text><text x="16" y="288" class="method">+ isAvailable()</text><text x="16" y="318" class="method">+ getDisplayInfo()</text>
+  </g>
+
+  <!-- Image -->
+  <g transform="translate(1340 115)">
+    <rect width="365" height="268" rx="5" fill="#fff8ed" stroke="#d58a3a" stroke-width="2.5"/>
+    <line x1="0" y1="68" x2="365" y2="68" stroke="#d58a3a" stroke-width="2"/><line x1="0" y1="174" x2="365" y2="174" stroke="#d58a3a" stroke-width="2"/>
+    <text x="182" y="29" class="head">&lt;&lt;实体类&gt;&gt;</text><text x="182" y="57" class="head">房源图片（PropertyImage）</text>
+    <text x="16" y="100" class="body">+ Integer id</text><text x="16" y="129" class="body">+ Image image</text><text x="16" y="158" class="body">+ Integer sortOrder</text>
+    <text x="16" y="207" class="method">+ uploadImage()</text><text x="16" y="235" class="method">+ deleteImage()</text>
+  </g>
+
+  <!-- Booking -->
+  <g transform="translate(670 580)">
+    <rect width="465" height="365" rx="5" fill="#fff8ed" stroke="#d58a3a" stroke-width="2.5"/>
+    <line x1="0" y1="68" x2="465" y2="68" stroke="#d58a3a" stroke-width="2"/><line x1="0" y1="250" x2="465" y2="250" stroke="#d58a3a" stroke-width="2"/>
+    <text x="232" y="29" class="head">&lt;&lt;实体类&gt;&gt;</text><text x="232" y="57" class="head">订单（Booking）</text>
+    <text x="16" y="99" class="body">+ Integer id</text><text x="16" y="128" class="body">+ String guestName / phone</text><text x="16" y="157" class="body">+ Date checkInDate / checkOutDate</text><text x="16" y="186" class="body">+ Decimal totalAmount</text><text x="16" y="215" class="body">+ String status / paymentStatus</text><text x="16" y="244" class="body">+ String paymentToken</text>
+    <text x="16" y="282" class="method">+ createBooking()</text><text x="16" y="311" class="method">+ calculateAmount()</text><text x="16" y="340" class="method">+ confirmPayment()</text>
+  </g>
+
+  <!-- booking service -->
+  <g transform="translate(80 620)">
+    <rect width="415" height="248" rx="5" fill="#edf8f2" stroke="#5a9872" stroke-width="2.5"/>
+    <line x1="0" y1="68" x2="415" y2="68" stroke="#5a9872" stroke-width="2"/>
+    <text x="207" y="29" class="head">&lt;&lt;业务服务&gt;&gt;</text><text x="207" y="57" class="head">订单服务（BookingService）</text>
+    <text x="16" y="105" class="method">+ validateBooking()</text><text x="16" y="139" class="method">+ checkDateAvailability()</text><text x="16" y="173" class="method">+ updatePropertyStatus()</text><text x="16" y="207" class="method">+ releaseDepartedStays()</text>
+  </g>
+
+  <!-- finance -->
+  <g transform="translate(1320 620)">
+    <rect width="415" height="248" rx="5" fill="#edf8f2" stroke="#5a9872" stroke-width="2.5"/>
+    <line x1="0" y1="68" x2="415" y2="68" stroke="#5a9872" stroke-width="2"/>
+    <text x="207" y="29" class="head">&lt;&lt;业务服务&gt;&gt;</text><text x="207" y="57" class="head">财务报表（FinanceReport）</text>
+    <text x="16" y="105" class="method">+ generateReport()</text><text x="16" y="139" class="method">+ getPaidIncome()</text><text x="16" y="173" class="method">+ rankPropertyIncome()</text><text x="16" y="207" class="method">+ exportCSV()</text>
+  </g>
+
+  <!-- relationships -->
+  <path d="M460 249 L698 249" class="line"/><text x="580" y="235" class="rel">管理</text>
+  <path d="M1105 245 L1338 245" class="line"/><text x="1220" y="231" class="rel">包含 1 : 0..*</text>
+  <path d="M900 440 L900 577" class="line"/><text x="940" y="520" class="rel">对应 1 : 0..*</text>
+  <path d="M495 744 L668 744" class="line"/><text x="584" y="729" class="rel">处理订单</text>
+  <path d="M1137 744 L1318 744" class="line"/><text x="1228" y="729" class="rel">统计订单</text>
+  <path d="M458 315 C555 345, 590 512, 700 660" class="line"/><text x="545" y="449" class="rel">处理</text>
+  <path d="M1125 365 C1250 405, 1380 490, 1420 618" class="line"/><text x="1328" y="488" class="rel">查看与导出</text>
+  <text x="900" y="1005" class="note" text-anchor="middle">说明：订单是核心业务实体；订单服务负责日期校验、支付确认、房态更新与离店自动释放；财务报表基于订单数据进行统计和导出。</text>
+</svg>

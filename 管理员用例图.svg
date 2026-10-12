@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920">
+  <defs>
+    <style>
+      .title{font:700 31px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342}
+      .label{font:23px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342;text-anchor:middle;dominant-baseline:middle}
+      .sub{font:19px 'Microsoft YaHei','SimSun',sans-serif;fill:#435364;text-anchor:middle;dominant-baseline:middle}
+      .actor{font:23px 'Microsoft YaHei','SimSun',sans-serif;fill:#253342;text-anchor:middle}
+      .line{stroke:#4d5d6c;stroke-width:2.2;fill:none}
+      .ellipse{fill:#fbfdff;stroke:#4d5d6c;stroke-width:2.2}
+    </style>
+  </defs>
+  <rect width="1600" height="920" fill="#fff"/>
+  <text x="800" y="58" class="title" text-anchor="middle">栖居民宿预订与管理系统——管理员用例图</text>
+
+  <!-- system border -->
+  <rect x="290" y="95" width="1210" height="745" fill="none" stroke="#4d5d6c" stroke-width="2.2"/>
+  <text x="320" y="130" class="sub" text-anchor="start">栖居民宿预订与管理系统</text>
+
+  <!-- actor -->
+  <circle cx="130" cy="395" r="27" fill="white" stroke="#4d5d6c" stroke-width="2.5"/>
+  <line x1="130" y1="422" x2="130" y2="528" class="line"/>
+  <line x1="72" y1="462" x2="188" y2="462" class="line"/>
+  <line x1="130" y1="528" x2="78" y2="600" class="line"/>
+  <line x1="130" y1="528" x2="182" y2="600" class="line"/>
+  <text x="130" y="642" class="actor">管理员</text>
+
+  <!-- associations -->
+  <path d="M188 462 L430 218" class="line"/>
+  <path d="M188 462 L695 218" class="line"/>
+  <path d="M188 462 L1170 218" class="line"/>
+  <path d="M188 462 L523 435" class="line"/>
+  <path d="M188 462 L953 435" class="line"/>
+  <path d="M188 462 L1225 520" class="line"/>
+  <path d="M188 462 L630 690" class="line"/>
+  <path d="M188 462 L1050 690" class="line"/>
+
+  <!-- ellipses -->
+  <ellipse cx="500" cy="205" rx="132" ry="54" class="ellipse"/>
+  <text x="500" y="200" class="label">登录后台</text><text x="500" y="230" class="sub">（身份验证与权限控制）</text>
+
+  <ellipse cx="810" cy="205" rx="185" ry="60" class="ellipse"/>
+  <text x="810" y="195" class="label">房源管理</text><text x="810" y="228" class="sub">（新增、编辑、删除、图片上传）</text>
+
+  <ellipse cx="1250" cy="205" rx="190" ry="60" class="ellipse"/>
+  <text x="1250" y="195" class="label">订单管理</text><text x="1250" y="228" class="sub">（查看订单、处理订单、确认状态）</text>
+
+  <ellipse cx="550" cy="435" rx="150" ry="55" class="ellipse"/>
+  <text x="550" y="428" class="label">新订单提醒</text><text x="550" y="458" class="sub">（关注待处理业务）</text>
+
+  <ellipse cx="1000" cy="435" rx="176" ry="60" class="ellipse"/>
+  <text x="1000" y="425" class="label">房态管理</text><text x="1000" y="458" class="sub">（可预订、已售罄、维护中）</text>
+
+  <ellipse cx="1270" cy="545" rx="190" ry="60" class="ellipse"/>
+  <text x="1270" y="535" class="label">支付状态查看</text><text x="1270" y="568" class="sub">（待支付、已支付、已确认）</text>
+
+  <ellipse cx="650" cy="700" rx="180" ry="60" class="ellipse"/>
+  <text x="650" y="690" class="label">财务报表管理</text><text x="650" y="723" class="sub">（收入统计、订单数量、房源排名）</text>
+
+  <ellipse cx="1110" cy="700" rx="160" ry="55" class="ellipse"/>
+  <text x="1110" y="693" class="label">CSV 数据导出</text><text x="1110" y="723" class="sub">（按时间范围导出）</text>
+
+  <text x="800" y="885" class="sub">图中各用例均由管理员发起；订单支付、订单状态与房态更新由系统自动联动处理。</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34495e"/>
+    </marker>
+    <style>
+      .title { font-family: 'Microsoft YaHei','SimSun',sans-serif; font-size: 31px; font-weight: bold; fill: #1d2b3a; }
+      .section { font-family: 'Microsoft YaHei','SimSun',sans-serif; font-size: 23px; font-weight: bold; fill: #fff; }
+      .node { font-family: 'Microsoft YaHei','SimSun',sans-serif; font-size: 21px; fill: #1d2b3a; text-anchor: middle; dominant-baseline: middle; }
+      .small { font-family: 'Microsoft YaHei','SimSun',sans-serif; font-size: 18px; fill: #33485c; text-anchor: middle; dominant-baseline: middle; }
+      .core { font-family: 'Microsoft YaHei','SimSun',sans-serif; font-size: 25px; font-weight: bold; fill: #fff; text-anchor: middle; }
+      .line { stroke: #34495e; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .bi { stroke: #34495e; stroke-width: 2.5; fill: none; marker-start: url(#arrow); marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="980" fill="#ffffff"/>
+  <text x="800" y="56" class="title" text-anchor="middle">栖居民宿预订与管理系统总体结构框架图</text>
+
+  <!-- left: front-end -->
+  <rect x="65" y="105" width="350" height="54" rx="6" fill="#4f6f8f"/>
+  <text x="240" y="140" class="section" text-anchor="middle">顾客前台（浏览器访问）</text>
+  <rect x="80" y="190" width="320" height="72" rx="5" fill="#edf4fa" stroke="#4f6f8f" stroke-width="2"/>
+  <text x="240" y="226" class="node">房源展示与关键词搜索</text>
+  <rect x="80" y="300" width="320" height="72" rx="5" fill="#edf4fa" stroke="#4f6f8f" stroke-width="2"/>
+  <text x="240" y="336" class="node">房源详情与日期选择</text>
+  <rect x="80" y="410" width="320" height="72" rx="5" fill="#edf4fa" stroke="#4f6f8f" stroke-width="2"/>
+  <text x="240" y="446" class="node">在线预订与订单提交</text>
+  <rect x="80" y="520" width="320" height="72" rx="5" fill="#edf4fa" stroke="#4f6f8f" stroke-width="2"/>
+  <text x="240" y="556" class="node">二维码支付确认</text>
+  <rect x="80" y="630" width="320" height="72" rx="5" fill="#edf4fa" stroke="#4f6f8f" stroke-width="2"/>
+  <text x="240" y="666" class="node">订单结果与入住提示</text>
+
+  <!-- arrows left -->
+  <path d="M240 262 L240 300" class="line"/>
+  <path d="M240 372 L240 410" class="line"/>
+  <path d="M240 482 L240 520" class="line"/>
+  <path d="M240 592 L240 630" class="line"/>
+  <path d="M400 446 L590 446" class="line"/>
+
+  <!-- core -->
+  <rect x="590" y="125" width="400" height="675" rx="8" fill="#315e7b" stroke="#213f52" stroke-width="3"/>
+  <text x="790" y="190" class="core">Django Web 应用服务</text>
+  <line x1="630" y1="218" x2="950" y2="218" stroke="#a9c5d8" stroke-width="2"/>
+  <text x="790" y="275" class="core" font-size="21">URL 路由与页面模板</text>
+  <text x="790" y="344" class="core" font-size="21">房源、订单与支付业务逻辑</text>
+  <text x="790" y="413" class="core" font-size="21">日期校验与金额自动计算</text>
+  <text x="790" y="482" class="core" font-size="21">支付、订单与房态联动</text>
+  <text x="790" y="551" class="core" font-size="21">退房后房源自动释放</text>
+  <text x="790" y="620" class="core" font-size="21">权限控制与后台管理</text>
+  <text x="790" y="689" class="core" font-size="21">报表统计与 CSV 数据导出</text>
+  <text x="790" y="753" class="small" fill="#d8eaf5">Python · Django · HTML · CSS · JavaScript</text>
+
+  <!-- right admin -->
+  <rect x="1185" y="105" width="350" height="54" rx="6" fill="#8b6b4c"/>
+  <text x="1360" y="140" class="section" text-anchor="middle">管理后台（Django Admin）</text>
+  <rect x="1200" y="190" width="320" height="72" rx="5" fill="#fcf5ed" stroke="#8b6b4c" stroke-width="2"/>
+  <text x="1360" y="226" class="node">后台登录与权限控制</text>
+  <rect x="1200" y="300" width="320" height="72" rx="5" fill="#fcf5ed" stroke="#8b6b4c" stroke-width="2"/>
+  <text x="1360" y="336" class="node">房源新增、编辑与图片上传</text>
+  <rect x="1200" y="410" width="320" height="72" rx="5" fill="#fcf5ed" stroke="#8b6b4c" stroke-width="2"/>
+  <text x="1360" y="446" class="node">订单查看与新订单提醒</text>
+  <rect x="1200" y="520" width="320" height="72" rx="5" fill="#fcf5ed" stroke="#8b6b4c" stroke-width="2"/>
+  <text x="1360" y="556" class="node">房态维护与订单处理</text>
+  <rect x="1200" y="630" width="320" height="72" rx="5" fill="#fcf5ed" stroke="#8b6b4c" stroke-width="2"/>
+  <text x="1360" y="666" class="node">财务报表与 CSV 导出</text>
+  <path d="M1200 226 L990 226" class="line"/>
+  <path d="M1200 446 L990 446" class="line"/>
+  <path d="M1200 666 L990 666" class="line"/>
+
+  <!-- database -->
+  <rect x="535" y="840" width="510" height="58" rx="7" fill="#506d59"/>
+  <text x="790" y="877" class="section" text-anchor="middle">MySQL 数据库</text>
+  <rect x="535" y="898" width="510" height="50" rx="0" fill="#f0f6f1" stroke="#506d59" stroke-width="2"/>
+  <text x="790" y="923" class="small">房源信息 · 房源图片 · 订单记录 · 支付状态 · 管理员数据</text>
+  <path d="M790 800 L790 838" class="bi"/>
+
+  <!-- legend -->
+  <text x="66" y="935" class="small" text-anchor="start">说明：实线箭头表示核心业务请求与数据流转；系统根据订单支付及入住状态自动维护房源可订状态。</text>
+</svg>
