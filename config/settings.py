@@ -2,12 +2,24 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-this-before-deployment")
 DEBUG = os.getenv("DEBUG", "True").lower() in {"1", "true", "yes", "on"}
+if not DEBUG and SECRET_KEY == "django-insecure-change-this-before-deployment":
+    raise ImproperlyConfigured("线上环境必须设置独立的 SECRET_KEY。")
+
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
+if os.getenv("RENDER") or os.getenv("RENDER_EXTERNAL_HOSTNAME"):
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Render 会在运行时自动提供 RENDER_EXTERNAL_HOSTNAME；本地仍可使用 .env 配置。
 _configured_hosts = os.getenv("ALLOWED_HOSTS", "").split(",")
@@ -101,6 +113,13 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # 开启后由 WhiteNoise 直接向浏览器提供压缩、带版本的静态资源。
 STORAGES = {
+    "default": {
+        "BACKEND": (
+            "listings.storage.DatabaseImageStorage"
+            if os.getenv("CLOUD_MEDIA_STORAGE") == "database"
+            else "django.core.files.storage.FileSystemStorage"
+        ),
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -108,5 +127,6 @@ STORAGES = {
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+MAX_IMAGE_UPLOAD_BYTES = 5 * 1024 * 1024
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

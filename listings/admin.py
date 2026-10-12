@@ -1,12 +1,30 @@
 from django.contrib import admin
+from django import forms
+from django.conf import settings
 from django.urls import reverse
 from django.utils.html import format_html
 
 from .models import Booking, Property
 
 
+class PropertyAdminForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = "__all__"
+
+    def clean_image(self):
+        image = self.cleaned_data.get("image")
+        if image and hasattr(image, "image"):
+            if image.size > settings.MAX_IMAGE_UPLOAD_BYTES:
+                raise forms.ValidationError("房源图片不能超过 5 MB。")
+            if image.image.format not in {"JPEG", "PNG", "WEBP", "GIF"}:
+                raise forms.ValidationError("仅支持 JPG、PNG、WebP 和 GIF 图片。")
+        return image
+
+
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
+    form = PropertyAdminForm
     list_display = ("image_preview", "name", "city", "price_per_night", "max_guests", "status", "edit_link")
     list_display_links = ("name",)
     list_editable = ("price_per_night", "max_guests", "status")
@@ -17,7 +35,7 @@ class PropertyAdmin(admin.ModelAdmin):
     fieldsets = (
         ("房源信息", {"fields": ("name", "city", "address", "description", "status")}),
         ("入住与价格", {"fields": ("price_per_night", "max_guests", "bedrooms", "amenities")}),
-        ("本地封面图片", {"fields": ("image", "image_preview"), "description": "点击“选择文件”后，直接从电脑中上传图片。"}),
+        ("封面图片", {"fields": ("image", "image_preview"), "description": "支持 JPG、PNG、WebP 和 GIF，单张不超过 5 MB。"}),
     )
 
     @admin.display(description="封面")

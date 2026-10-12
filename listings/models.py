@@ -6,6 +6,15 @@ from django.db import models, transaction
 from django.utils import timezone
 
 
+class StoredImage(models.Model):
+    """免费托管环境的持久化图片，不依赖临时本地文件系统。"""
+
+    name = models.CharField(max_length=255, primary_key=True)
+    content = models.BinaryField()
+    content_type = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class Property(models.Model):
     class Status(models.TextChoices):
         AVAILABLE = "available", "可预订"
